@@ -1,7 +1,7 @@
-# Xibalba
-Les portes de Xibalba - Jeux 2D
+# Les Portes de Xibalba
+Les Portes de Xibalba - Jeux 2D
 
-Les portes de Xibalba est une aventure/horreur dans laquelle le joueur incarne un démon qui hante les habitants d'un village Maya. Le jeu se déroule dans un monde ouvert et mystérieux, rempli de dangers mortels. Le joueurs devras explorer les environs, acquérir des compétences spéciales et utiliser la ruse pour semer la terreur et la destruction crée par les habitants du village. Xibalba offre une expérience unique et terrifiante aux joueurs qui osent se mesurer à ses défis.
+Les Portes de Xibalba est un jeu d'aventure et d'horreur dans lequel le joueur incarne un démon qui hante les habitants d'un village Maya. Le jeu se déroule dans un monde ouvert et mystérieux, rempli de dangers mortels. Le joueur devra explorer les environs, acquérir des compétences spéciales et utiliser sa ruse pour semer la terreur et le chaos parmi les habitants du village. Xibalba offre une expérience unique et terrifiante aux joueurs qui osent se mesurer à ses défis.
 
 Créateur : 
 Lyes Aidoun
