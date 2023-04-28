@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 40a47a160a7657448a25b97724ad139f
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Celexa
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 6734dd21f27e58344a0d0f9a47fba1dc, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
