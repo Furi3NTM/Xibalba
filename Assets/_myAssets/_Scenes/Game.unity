@@ -21482,8 +21482,9 @@ Transform:
   - {fileID: 195375856}
   - {fileID: 63697962}
   - {fileID: 1761126946}
+  - {fileID: 1834519948}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1716880319
 PrefabInstance:
@@ -22489,14 +22490,16 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1834519948}
+  - component: {fileID: 1834519953}
   - component: {fileID: 1834519947}
   - component: {fileID: 1834519946}
+  - component: {fileID: 1834519954}
   - component: {fileID: 1834519949}
   - component: {fileID: 1834519950}
   - component: {fileID: 1834519951}
   - component: {fileID: 1834519952}
   m_Layer: 0
-  m_Name: DEMON
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22581,13 +22584,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1834519945}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.79, y: -2.23, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -25.6689, y: 13.587204, z: -2.7558076}
   m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_Father: {fileID: 1715593529}
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1834519949
 MonoBehaviour:
@@ -22596,7 +22599,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1834519945}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: abd146093740c5d43b5909c7913f3109, type: 3}
   m_Name: 
@@ -22663,6 +22666,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1834519948}
   lerpSpeed: 10
+--- !u!114 &1834519953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1834519945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f15081613108e064393fe6017aa577fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 3
+  _delaiMelee: 2
+  _viesJoueur: 3
+--- !u!111 &1834519954
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1834519945}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: 240e64a045e1159488067cb351025a5c, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1847736890
 GameObject:
   m_ObjectHideFlags: 0
