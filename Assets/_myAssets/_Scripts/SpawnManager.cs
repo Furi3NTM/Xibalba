@@ -5,8 +5,8 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
 
-    [SerializeField] private GameObject prefabEnemy = default;
-    [SerializeField] private GameObject prefabEnemyKight = default;
+    [SerializeField] private GameObject prefabThief = default;
+    [SerializeField] private GameObject prefabKnight = default;
     [SerializeField] private GameObject enemyContainer = default;
 
     public GameObject player;
@@ -34,12 +34,13 @@ public class SpawnManager : MonoBehaviour
 
         while (stopSpawn == false)
         {
-            Vector3 positionSpawn = new Vector3(Random.Range(player.transform.position.x - 5f, player.transform.position.x + 5f), 7f, player.transform.position.z + Random.Range(-2f, 2f));
-            GameObject newEnemy = Instantiate(prefabEnemy, positionSpawn, Quaternion.identity);
-            newEnemy.transform.parent = enemyContainer.transform;
+            Vector3 theifSpawn = new Vector3(Random.Range(player.transform.position.x - 5f, player.transform.position.x + 5f), 7f, player.transform.position.z + Random.Range(-2f, 2f));
+            GameObject newTheif = Instantiate(prefabThief, theifSpawn, Quaternion.identity);
+            newTheif.transform.parent = enemyContainer.transform;
 
-            GameObject newKight = Instantiate(prefabEnemyKight, positionSpawn, Quaternion.identity);
-            newKight.transform.parent = enemyContainer.transform;
+            Vector3 knightSpawn = new Vector3(Random.Range(player.transform.position.x - 5f, player.transform.position.x + 5f), 7f, player.transform.position.z + Random.Range(-2f, 2f));
+            GameObject newKnight = Instantiate(prefabKnight, knightSpawn, Quaternion.identity);
+            newKnight.transform.parent = enemyContainer.transform;
             yield return new WaitForSeconds(Random.Range(8.0f, 20.0f));
         }
 
