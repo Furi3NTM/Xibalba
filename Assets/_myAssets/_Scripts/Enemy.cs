@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
                      public int damageAmount = 50;
 
     public Transform player;
+    private Animator _anim;
 
     private Rigidbody2D rbEnemy;
     private Vector2 movementEnemy;
@@ -48,7 +49,7 @@ public class Enemy : MonoBehaviour
         rbEnemy.MovePosition((Vector2)transform.position + (direction * moveSpeed * Time.deltaTime));
     }
 
-    // Méthode pour infliger des dégâts à l'ennemi
+    // Mï¿½thode pour infliger des dï¿½gï¿½ts ï¿½ l'ennemi
     public void TakeDamage()
     {
         currentHealth -= damageAmount;
@@ -58,34 +59,34 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    // Méthode appelée lorsque l'ennemi meurt
+    // Mï¿½thode appelï¿½e lorsque l'ennemi meurt
     void Die()
     {
-        // Ajoutez ici le code pour détruire l'ennemi, jouer une animation, etc.
+        // Ajoutez ici le code pour dï¿½truire l'ennemi, jouer une animation, etc.
         Destroy(gameObject);
     }
-    // Gère les collisions entre les ennemis et les lasers/joueur
+    // Gï¿½re les collisions entre les ennemis et les lasers/joueur
         private void OnTriggerEnter2D(Collider2D other)
         {
             // Si la collision survient avec le joueur
             if (other.tag == "Player")
             {
-                //Récupérer la classe Player afin d'accéder aux méthodes publiques
+                //Rï¿½cupï¿½rer la classe Player afin d'accï¿½der aux mï¿½thodes publiques
                 Player player = other.transform.GetComponent<Player>();
-                player.Degats();  // Appeler la méthode dégats du joueur
+                player.Degats();  // Appeler la mï¿½thode dï¿½gats du joueur
 
-                Destroy(this.gameObject); // Détruire l'objet ennemi
-                Debug.Log("l'ennemi a touché le joueur");
+                Destroy(this.gameObject); // Dï¿½truire l'objet ennemi
+                Debug.Log("l'ennemi a touchï¿½ le joueur");
 
         }
         // Si la collision se produit avec un laser
         else if (other.tag == "attaqueCAC")
             {
-                // Détruit l'ennemi et le laser
+                // Dï¿½truit l'ennemi et le laser
                 Destroy(this.gameObject);
-                // Appelle la méthode dans la classe UIManger pour augmenter le pointage
+                // Appelle la mï¿½thode dans la classe UIManger pour augmenter le pointage
                 //_uiManager.AjouterScore(_points);
-                Debug.Log("attaqueCAC a touché l'ennemi");
+                Debug.Log("attaqueCAC a touchï¿½ l'ennemi");
 
         }
 

@@ -14,17 +14,19 @@ public class Player : MonoBehaviour
 
     [SerializeField] private int _viesJoueur = 3;
 
-
     private float _canFire = -1;
 
     private Animator _anim;
     private SpawnManager _spawnManager;
+    private UIManager _uiManager;
 
     private void Awake()
     {
 
         _spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
         _anim = GetComponent<Animator>();
+        _uiManager = FindObjectOfType<UIManager>().GetComponent<UIManager>();
+
 
     }
     // Start is called before the first frame update
@@ -36,6 +38,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         Move();
         if (Input.GetKeyDown(KeyCode.Space) )
         {
@@ -53,6 +56,7 @@ public class Player : MonoBehaviour
     private void Melee()
     {
         _attaqueCaC.SetActive(true);
+
         Debug.Log("Melee animation triggered!");
     }
 
@@ -75,44 +79,60 @@ public class Player : MonoBehaviour
 
         if (horizontalInput < 0) //tourner a gauche
         {
-            //transform.localScale = new Vector3(0.1f, transform.localScale.y, transform.localScale.z);
+            transform.localScale = new Vector3(3f, transform.localScale.y, transform.localScale.z);
 
         }
         else if (horizontalInput > 0)//tourner a droite
         {
 
-            //transform.localScale = new Vector3(-0.1f, transform.localScale.y, transform.localScale.z);
+            transform.localScale = new Vector3(-3f, transform.localScale.y, transform.localScale.z);
 
         }
 
     }
 
 
-    // Méthodes publiques ==================================================================
+    // Mï¿½thodes publiques ==================================================================
 
-    // Méthode appellé quand le joueur subit du dégat
+    // Mï¿½thode appellï¿½ quand le joueur subit du dï¿½gat
     public void Degats()
     {
         _viesJoueur--;
 
         if (_viesJoueur == 2)
         {
+            _anim.SetBool("playerHurt", true);
             Debug.Log("vie=2");
+        _uiManager.perteVie();
+
         }
         else if (_viesJoueur == 1)
         {
+            _anim.SetBool("playerHurt", true);
+
             Debug.Log("vie=1");
+        _uiManager.perteVie();
+
         }
 
-        // Si le joueur n'a plus de vie on arrête le spwan et détruit le joueur
+
+
+        // Si le joueur n'a plus de vie on arrï¿½te le spwan et dï¿½truit le joueur
         if (_viesJoueur < 1)
         {
             //_spawnManager.mortJoueur();
             //ajouter ici animation de degats
             Destroy(this.gameObject);
+            _uiManager.perteVie();
+            
             Debug.Log("vie=0");
 
+
         }
+
+
+
+
     }
 
 
