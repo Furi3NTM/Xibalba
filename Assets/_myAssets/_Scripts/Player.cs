@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float _speed = 15f;
     [SerializeField] private float _delaiMelee = 2f;
 
+    [SerializeField] private GameObject _attaqueCaC = default;
+
     [SerializeField] private int _viesJoueur = 3;
 
 
@@ -32,21 +34,25 @@ public class Player : MonoBehaviour
     void Update()
     {
         Move();
-
-        if (Input.GetKeyDown(KeyCode.Space) && Time.time > _canFire)
+        if (Input.GetKeyDown(KeyCode.Space) )
         {
+            _anim.SetBool("Attaque_cac", true);
+
             Melee();
         }
         else if (Input.GetKeyUp(KeyCode.Space))
         {
-            _anim.SetBool("attaque_cac", false);
+            _anim.SetBool("Attaque_cac", false);
+            _attaqueCaC.SetActive(false);
+
         }
     }
 
     private void Melee()
     {
         _canFire = Time.time + _delaiMelee;
-        _anim.SetBool("attaque_cac", true);
+
+        _attaqueCaC.SetActive(true);
         Debug.Log("Melee animation triggered!");
     }
 
