@@ -64,6 +64,31 @@ public class Enemy : MonoBehaviour
         // Ajoutez ici le code pour détruire l'ennemi, jouer une animation, etc.
         Destroy(gameObject);
     }
+    // Gère les collisions entre les ennemis et les lasers/joueur
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            // Si la collision survient avec le joueur
+            if (other.tag == "Player")
+            {
+                //Récupérer la classe Player afin d'accéder aux méthodes publiques
+                Player player = other.transform.GetComponent<Player>();
+                player.Degats();  // Appeler la méthode dégats du joueur
 
+                Destroy(this.gameObject); // Détruire l'objet ennemi
+                Debug.Log("l'ennemi a touché le joueur");
+
+        }
+        // Si la collision se produit avec un laser
+        else if (other.tag == "attaqueCAC")
+            {
+                // Détruit l'ennemi et le laser
+                Destroy(this.gameObject);
+                // Appelle la méthode dans la classe UIManger pour augmenter le pointage
+                //_uiManager.AjouterScore(_points);
+                Debug.Log("attaqueCAC a touché l'ennemi");
+
+        }
+
+    }
 
 }
