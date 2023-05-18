@@ -37,11 +37,13 @@ public class SpawnManager : MonoBehaviour
             Vector3 theifSpawn = new Vector3(Random.Range(player.transform.position.x - 5f, player.transform.position.x + 5f), 7f, player.transform.position.z + Random.Range(-2f, 2f));
             GameObject newTheif = Instantiate(prefabThief, theifSpawn, Quaternion.identity);
             newTheif.transform.parent = enemyContainer.transform;
-
+            newTheif.SetActive(true);
             Vector3 knightSpawn = new Vector3(Random.Range(player.transform.position.x - 5f, player.transform.position.x + 5f), 7f, player.transform.position.z + Random.Range(-2f, 2f));
             GameObject newKnight = Instantiate(prefabKnight, knightSpawn, Quaternion.identity);
             newKnight.transform.parent = enemyContainer.transform;
-            yield return new WaitForSeconds(Random.Range(8.0f, 20.0f));
+            newKnight.SetActive(true);
+
+            yield return new WaitForSeconds(Random.Range(1.0f, 5.0f));
         }
 
     }
