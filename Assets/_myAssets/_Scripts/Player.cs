@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
 
         _spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
         _anim = GetComponent<Animator>();
-        _uiManager = FindObjectOfType<UIManager>().GetComponent<UIManager>();
+        //_uiManager = FindObjectOfType<UIManager>().GetComponent<UIManager>();
 
 
     }
@@ -76,7 +76,6 @@ public class Player : MonoBehaviour
 
 
 
-
         if (horizontalInput < 0) //tourner a gauche
         {
             transform.localScale = new Vector3(3f, transform.localScale.y, transform.localScale.z);
@@ -103,7 +102,7 @@ public class Player : MonoBehaviour
         {
             _anim.SetBool("playerHurt", true);
             Debug.Log("vie=2");
-        _uiManager.perteVie();
+           _uiManager.perteVie();
 
         }
         else if (_viesJoueur == 1)
