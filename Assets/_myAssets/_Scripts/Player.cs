@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
 
         _spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
         _anim = GetComponent<Animator>();
-        _uiManager = FindObjectOfType<UIManager>().GetComponent<UIManager>();
+       // _uiManager = FindObjectOfType<UIManager>().GetComponent<UIManager>();
 
 
     }
