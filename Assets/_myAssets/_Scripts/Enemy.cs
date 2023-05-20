@@ -78,7 +78,7 @@ public class Enemy : MonoBehaviour
                 Destroy(this.gameObject); // D�truire l'objet ennemi
                 Debug.Log("l'ennemi a touch� le joueur");
 
-        }
+            }
         // Si la collision se produit avec un laser
         else if (other.tag == "attaqueCAC")
             {
@@ -88,8 +88,8 @@ public class Enemy : MonoBehaviour
                 //_uiManager.AjouterScore(_points);
                 Debug.Log("attaqueCAC a touch� l'ennemi");
 
-        }
+            }
 
-    }
+        }
 
 }

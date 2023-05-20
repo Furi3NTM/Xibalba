@@ -25,7 +25,6 @@ public class Player : MonoBehaviour
 
         _spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
         _anim = GetComponent<Animator>();
-        _uiManager = FindObjectOfType<UIManager>().GetComponent<UIManager>();
 
 
     }
@@ -101,18 +100,11 @@ public class Player : MonoBehaviour
 
         if (_viesJoueur == 2)
         {
-            _anim.SetBool("playerHurt", true);
             Debug.Log("vie=2");
-        _uiManager.perteVie();
-
         }
         else if (_viesJoueur == 1)
         {
-            _anim.SetBool("playerHurt", true);
-
             Debug.Log("vie=1");
-        _uiManager.perteVie();
-
         }
 
 
@@ -120,11 +112,7 @@ public class Player : MonoBehaviour
         // Si le joueur n'a plus de vie on arr�te le spwan et d�truit le joueur
         if (_viesJoueur < 1)
         {
-            //_spawnManager.mortJoueur();
-            //ajouter ici animation de degats
             Destroy(this.gameObject);
-            _uiManager.perteVie();
-            
             Debug.Log("vie=0");
 
 
