@@ -27,6 +27,10 @@ public class Player : MonoBehaviour
         _anim = GetComponent<Animator>();
 
 
+        //_uiManager = FindObjectOfType<UIManager>().GetComponent<UIManager>();
+
+
+
     }
     // Start is called before the first frame update
     void Start()
@@ -75,7 +79,6 @@ public class Player : MonoBehaviour
 
 
 
-
         if (horizontalInput < 0) //tourner a gauche
         {
             transform.localScale = new Vector3(3f, transform.localScale.y, transform.localScale.z);
@@ -101,6 +104,10 @@ public class Player : MonoBehaviour
         if (_viesJoueur == 2)
         {
             Debug.Log("vie=2");
+
+          // _uiManager.perteVie();
+
+
         }
         else if (_viesJoueur == 1)
         {
