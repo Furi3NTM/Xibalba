@@ -7,15 +7,14 @@ public class UIManager : MonoBehaviour
 {
 
 
-    [SerializeField] private TextMeshProUGUI _txtVie = default;
     [SerializeField] private TextMeshProUGUI _txtScore = default;
 
-    private int _vie = 3;
+    private int _score =0;
 
     // Start is called before the first frame update
     void Start()
     {
-        UpdateVie();
+        UpdateScore();
     }
 
     // Update is called once per frame
@@ -24,19 +23,19 @@ public class UIManager : MonoBehaviour
         
     }
 
-    //Gestion de vie
-    private void UpdateVie()
+    //Gestion de score
+    public void AjouterScore(int points)
     {
-        _txtVie.text = "Vie : " + _vie.ToString();
-    }
-    public int getVie()
-    {
-        return _vie;
-    }
-    public void perteVie() {
-        
-        _vie--;
-        UpdateVie();
+        _score += points;
+        UpdateScore();
     }
 
+    private void UpdateScore()
+    {
+        _txtScore.text = _score.ToString();
+    }
+    public int getScore()
+    {
+        return _score;
+    }
 }

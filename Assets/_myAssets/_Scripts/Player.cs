@@ -9,17 +9,21 @@ public class Player : MonoBehaviour
 
     [SerializeField] private float _speed = 15f;
     [SerializeField] private float _delaiMelee = 2f;
-
-    [SerializeField] private GameObject _attaqueCaC = default;
-
-    [SerializeField] private int _viesJoueur = 3;
-
     private float _canFire = -1;
 
+    [SerializeField] private int _viesJoueur = 3;
+    [SerializeField] private int _maxVie = 100;
+    private int _vie;
+
+    [SerializeField] private GameObject _attaqueCaC = default;
     private Animator _anim;
     private SpawnManager _spawnManager;
     private UIManager _uiManager;
+    [SerializeField] private HpBar _hpBar;
 
+
+    
+    
     private void Awake()
     {
 
@@ -32,6 +36,10 @@ public class Player : MonoBehaviour
     void Start()
     {
         transform.position = new Vector3(0f, -2f, 0f);
+
+        _vie = _maxVie;
+        _hpBar.SetMaxHealth(_maxVie);
+    
     }
 
     // Update is called once per frame
@@ -39,13 +47,13 @@ public class Player : MonoBehaviour
     {
         
         Move();
-        if (Input.GetKeyDown(KeyCode.Space) )
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Mouse0))
         {
             _anim.SetBool("Attaque_cac", true);
 
      
         }
-        else if (Input.GetKeyUp(KeyCode.Space))
+        else if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.Mouse0))
         {
             _anim.SetBool("Attaque_cac", false);
 
@@ -108,6 +116,8 @@ public class Player : MonoBehaviour
         }
 
 
+      
+
 
         // Si le joueur n'a plus de vie on arr�te le spwan et d�truit le joueur
         if (_viesJoueur < 1)
@@ -117,11 +127,19 @@ public class Player : MonoBehaviour
 
 
         }
-
-
-
-
     }
 
+    //baisse la vie du player
+    public void TakeDamage(int damage)
+    {
+        _vie -= damage;
+        _hpBar.SetHealth(_vie);
+        if (_vie <= 0)
+        {
+            Destroy(this.gameObject);
+
+        }
+
+    }
 
 }
