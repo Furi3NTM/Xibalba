@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] public int maxHealth = 100; // Ajout de la variable de vie
                      public int damageAmount = 50;
 
+
     public Transform player;
     private Animator _anim;
 
@@ -65,6 +66,7 @@ public class Enemy : MonoBehaviour
         // Ajoutez ici le code pour d�truire l'ennemi, jouer une animation, etc.
         Destroy(gameObject);
     }
+
     // G�re les collisions entre les ennemis et les lasers/joueur
         private void OnTriggerEnter2D(Collider2D other)
         {
@@ -91,5 +93,9 @@ public class Enemy : MonoBehaviour
             }
 
         }
+
+
+
+
 
 }
