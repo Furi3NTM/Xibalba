@@ -8,8 +8,12 @@ public class Enemy : MonoBehaviour
     [SerializeField] public int maxHealth = 100; // Ajout de la variable de vie
                      public int damageAmount = 50;
 
+    public int _countEnnemis;
+
+
     public Transform player;
     private Animator _anim;
+    private UIManager _uiManager;
 
     private Rigidbody2D rbEnemy;
     private Vector2 movementEnemy;
@@ -19,6 +23,8 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
+        _uiManager = FindObjectOfType<UIManager>().GetComponent<UIManager>();
+
         rbEnemy = GetComponent<Rigidbody2D>();
 
         // Initialisation de la vie actuelle en fonction de l'ennemi
@@ -30,6 +36,7 @@ public class Enemy : MonoBehaviour
         {
             currentHealth = 100;
         }
+        _countEnnemis = 0;
     }
 
     void Update()
@@ -73,20 +80,36 @@ public class Enemy : MonoBehaviour
             {
                 //R�cup�rer la classe Player afin d'acc�der aux m�thodes publiques
                 Player player = other.transform.GetComponent<Player>();
-                player.TakeDamage(20);  // Appeler la m�thode d�gats du joueur
+                if (this.tag == "Knight")
+                {
+                    player.TakeDamage(25);  // Appeler la m�thode d�gats du joueur
+                    Debug.Log("le chevalier a fait 25 degats");
 
-                Destroy(this.gameObject); // D�truire l'objet ennemi
-                Debug.Log("l'ennemi a touch� le joueur");
+                }
+
+                else
+                {
+
+                    player.TakeDamage(20);  // Appeler la m�thode d�gats du joueur
+                }
+
+            Destroy(this.gameObject); // D�truire l'objet ennemi
+            _countEnnemis++;
+            _uiManager.AjouterScore(_countEnnemis);
+
+            Debug.Log("l'ennemi a touch� le joueur");
 
             }
-        // Si la collision se produit avec un laser
-        else if (other.tag == "attaqueCAC")
+        //collision avec l'attaque CAC    
+        else if (other.tag == "attaqueCAC") 
             {
-                // D�truit l'ennemi et le laser
-                Destroy(this.gameObject);
-                // Appelle la m�thode dans la classe UIManger pour augmenter le pointage
-                //_uiManager.AjouterScore(_points);
-                Debug.Log("attaqueCAC a touch� l'ennemi");
+            // detruire l'ennemi
+            Destroy(this.gameObject); 
+            _countEnnemis++; //score
+
+            // Appelle la m�thode dans la classe UIManger pour augmenter le pointage
+            _uiManager.AjouterScore(_countEnnemis);
+             Debug.Log("attaqueCAC a touch� l'ennemi");
 
             }
 

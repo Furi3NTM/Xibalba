@@ -47,13 +47,13 @@ public class Player : MonoBehaviour
     {
         
         Move();
-        if (Input.GetKeyDown(KeyCode.Space) )
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Mouse0))
         {
             _anim.SetBool("Attaque_cac", true);
 
      
         }
-        else if (Input.GetKeyUp(KeyCode.Space))
+        else if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.Mouse0))
         {
             _anim.SetBool("Attaque_cac", false);
 
@@ -134,7 +134,7 @@ public class Player : MonoBehaviour
     {
         _vie -= damage;
         _hpBar.SetHealth(_vie);
-        if (_vie == 0)
+        if (_vie <= 0)
         {
             Destroy(this.gameObject);
 
