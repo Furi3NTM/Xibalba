@@ -72,8 +72,17 @@ public class UIManager : MonoBehaviour
     {
         _txtScore.text = _score.ToString();
     }
+
     public int getScore()
     {
         return _score;
+    }
+
+
+
+    IEnumerator EndGame()
+    {
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene(2);
     }
 }
