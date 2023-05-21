@@ -73,7 +73,7 @@ public class Enemy : MonoBehaviour
             {
                 //R�cup�rer la classe Player afin d'acc�der aux m�thodes publiques
                 Player player = other.transform.GetComponent<Player>();
-                player.Degats();  // Appeler la m�thode d�gats du joueur
+                player.TakeDamage(20);  // Appeler la m�thode d�gats du joueur
 
                 Destroy(this.gameObject); // D�truire l'objet ennemi
                 Debug.Log("l'ennemi a touch� le joueur");
