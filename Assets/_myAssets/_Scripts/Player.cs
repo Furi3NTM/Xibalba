@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 
@@ -16,10 +17,13 @@ public class Player : MonoBehaviour
     private int _vie;
 
     [SerializeField] private GameObject _attaqueCaC = default;
+    [SerializeField] private HpBar _hpBar;
+
     private Animator _anim;
     private SpawnManager _spawnManager;
     private UIManager _uiManager;
-    [SerializeField] private HpBar _hpBar;
+    private GestionScene _gestionScene;
+   
 
 
     
@@ -116,12 +120,12 @@ public class Player : MonoBehaviour
         }
 
 
-      
-
 
         // Si le joueur n'a plus de vie on arr�te le spwan et d�truit le joueur
         if (_viesJoueur < 1)
         {
+            int noScene = SceneManager.GetActiveScene().buildIndex;
+            SceneManager.LoadScene(noScene + 1);
             Destroy(this.gameObject);
             Debug.Log("vie=0");
 
@@ -136,6 +140,7 @@ public class Player : MonoBehaviour
         _hpBar.SetHealth(_vie);
         if (_vie <= 0)
         {
+           
             Destroy(this.gameObject);
 
         }

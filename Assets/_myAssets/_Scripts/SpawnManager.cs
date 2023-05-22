@@ -11,6 +11,8 @@ public class SpawnManager : MonoBehaviour
 
     public GameObject player;
 
+    private Transform playerTransform; // Référence au transform du joueur
+
     private bool stopSpawn = false;
     private float initialDelay = 10.0f;
     private float minDelay = 5f;
@@ -19,6 +21,10 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        // Récupérer la référence au transform du joueur
+        playerTransform = player.transform;
+
         StartCoroutine(SpawnEnemyRoutine());
     }
 
@@ -42,6 +48,10 @@ public class SpawnManager : MonoBehaviour
 
     void SpawnEnemy(GameObject enemyPrefab)
     {
+
+        if (playerTransform == null)
+            return;
+
         Vector3 enemySpawn = new Vector3(Random.Range((player.transform.position.x + 2) - 8f, player.transform.position.x + 8f),
                                          Random.Range(player.transform.position.y - 8f, player.transform.position.y + 8f),
                                          player.transform.position.z + Random.Range(-2f, 2f));

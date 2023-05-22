@@ -11,7 +11,10 @@ public class Enemy : MonoBehaviour
 
     public int _countEnnemis;
 
+    private bool isDestroyed = false;
+
     public Transform player;
+    private Transform playerTransform;
     private Animator _anim;
     private UIManager _uiManager;
 
@@ -23,7 +26,9 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        _uiManager = FindObjectOfType<UIManager>().GetComponent<UIManager>();
+        _uiManager = FindObjectOfType<UIManager>();
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+
 
         rbEnemy = GetComponent<Rigidbody2D>();
 
@@ -41,10 +46,17 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+
+        if (isDestroyed || playerTransform == null)
+            return;
+
         Vector3 direction = player.position - transform.position;
         direction.Normalize();
         movementEnemy = direction;
+        
+        
     }
+
 
     private void FixedUpdate()
     {
@@ -68,10 +80,11 @@ public class Enemy : MonoBehaviour
 
     // M�thode appel�e lorsque l'ennemi meurt
     void Die()
-    {
+     {
         // Ajoutez ici le code pour d�truire l'ennemi, jouer une animation, etc.
+        isDestroyed = true;
         Destroy(gameObject);
-    }
+     }
 
     // G�re les collisions entre les ennemis et les lasers/joueur
         private void OnTriggerEnter2D(Collider2D other)
@@ -115,9 +128,5 @@ public class Enemy : MonoBehaviour
             }
 
         }
-
-
-
-
 
 }
