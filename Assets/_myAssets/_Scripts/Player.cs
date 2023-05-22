@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 
@@ -16,16 +17,16 @@ public class Player : MonoBehaviour
     private int _vie;
 
     [SerializeField] private GameObject _attaqueCaC = default;
+    [SerializeField] private HpBar _hpBar;
+
     private Animator _anim;
     private SpawnManager _spawnManager;
     private UIManager _uiManager;
+
+    private GestionScene _gestionScene;
+   
     [SerializeField] private AudioClip _cAcSound = default;
 
-    [SerializeField] private HpBar _hpBar;
-
-
-    
-    
     private void Awake()
     {
 
@@ -111,33 +112,7 @@ public class Player : MonoBehaviour
 
     // M�thodes publiques ==================================================================
 
-    // M�thode appell� quand le joueur subit du d�gat
-    public void Degats()
-    {
-        _viesJoueur--;
-
-        if (_viesJoueur == 2)
-        {
-            Debug.Log("vie=2");
-        }
-        else if (_viesJoueur == 1)
-        {
-            Debug.Log("vie=1");
-        }
-
-
-      
-
-
-        // Si le joueur n'a plus de vie on arr�te le spwan et d�truit le joueur
-        if (_viesJoueur < 1)
-        {
-            Destroy(this.gameObject);
-            Debug.Log("vie=0");
-
-
-        }
-    }
+ 
 
     //baisse la vie du player
     public void TakeDamage(int damage)
@@ -147,6 +122,9 @@ public class Player : MonoBehaviour
         if (_vie <= 0)
         {
             Destroy(this.gameObject);
+            int noScene = SceneManager.GetActiveScene().buildIndex;
+            SceneManager.LoadScene(noScene + 1);
+
 
         }
 

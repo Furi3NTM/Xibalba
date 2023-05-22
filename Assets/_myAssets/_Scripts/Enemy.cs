@@ -11,7 +11,10 @@ public class Enemy : MonoBehaviour
 
     public int _countEnnemis;
 
+    private bool isDestroyed = false;
+
     public Transform player;
+    private Transform playerTransform;
     private Animator _anim;
     private UIManager _uiManager;
 
@@ -23,7 +26,9 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        _uiManager = FindObjectOfType<UIManager>().GetComponent<UIManager>();
+        _uiManager = FindObjectOfType<UIManager>();
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+
 
         rbEnemy = GetComponent<Rigidbody2D>();
 
@@ -41,10 +46,17 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+
+        if (isDestroyed || playerTransform == null)
+            return;
+
         Vector3 direction = player.position - transform.position;
         direction.Normalize();
         movementEnemy = direction;
+        
+        
     }
+
 
     private void FixedUpdate()
     {
@@ -56,22 +68,7 @@ public class Enemy : MonoBehaviour
         rbEnemy.MovePosition((Vector2)transform.position + (direction * moveSpeed * Time.deltaTime));
     }
 
-    // M�thode pour infliger des d�g�ts � l'ennemi
-    public void TakeDamage()
-    {
-        currentHealth -= damageAmount;
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
-    }
 
-    // M�thode appel�e lorsque l'ennemi meurt
-    void Die()
-    {
-        // Ajoutez ici le code pour d�truire l'ennemi, jouer une animation, etc.
-        Destroy(gameObject);
-    }
 
     // G�re les collisions entre les ennemis et les lasers/joueur
         private void OnTriggerEnter2D(Collider2D other)
@@ -84,15 +81,13 @@ public class Enemy : MonoBehaviour
                 if (this.tag == "Knight")
                 {
                     player.TakeDamage(25);  // Appeler la m�thode d�gats du joueur
-                    Debug.Log("le chevalier a fait 25 degats");
 
                 }
 
                 else
                 {
-
                     player.TakeDamage(20);  // Appeler la m�thode d�gats du joueur
-                }
+                 }
 
             Destroy(this.gameObject); // D�truire l'objet ennemi
             _countEnnemis++;
@@ -115,9 +110,5 @@ public class Enemy : MonoBehaviour
             }
 
         }
-
-
-
-
 
 }
