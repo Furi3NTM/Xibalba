@@ -68,23 +68,7 @@ public class Enemy : MonoBehaviour
         rbEnemy.MovePosition((Vector2)transform.position + (direction * moveSpeed * Time.deltaTime));
     }
 
-    // M�thode pour infliger des d�g�ts � l'ennemi
-    public void TakeDamage()
-    {
-        currentHealth -= damageAmount;
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
-    }
 
-    // M�thode appel�e lorsque l'ennemi meurt
-    void Die()
-     {
-        // Ajoutez ici le code pour d�truire l'ennemi, jouer une animation, etc.
-        isDestroyed = true;
-        Destroy(gameObject);
-     }
 
     // G�re les collisions entre les ennemis et les lasers/joueur
         private void OnTriggerEnter2D(Collider2D other)

@@ -112,33 +112,7 @@ public class Player : MonoBehaviour
 
     // M�thodes publiques ==================================================================
 
-    // M�thode appell� quand le joueur subit du d�gat
-    public void Degats()
-    {
-        _viesJoueur--;
-
-        if (_viesJoueur == 2)
-        {
-            Debug.Log("vie=2");
-        }
-        else if (_viesJoueur == 1)
-        {
-            Debug.Log("vie=1");
-        }
-
-
-
-        // Si le joueur n'a plus de vie on arr�te le spwan et d�truit le joueur
-        if (_viesJoueur < 1)
-        {
-            int noScene = SceneManager.GetActiveScene().buildIndex;
-            SceneManager.LoadScene(noScene + 1);
-            Destroy(this.gameObject);
-            Debug.Log("vie=0");
-
-
-        }
-    }
+ 
 
     //baisse la vie du player
     public void TakeDamage(int damage)
@@ -147,8 +121,10 @@ public class Player : MonoBehaviour
         _hpBar.SetHealth(_vie);
         if (_vie <= 0)
         {
-           
             Destroy(this.gameObject);
+            int noScene = SceneManager.GetActiveScene().buildIndex;
+            SceneManager.LoadScene(noScene + 1);
+
 
         }
 

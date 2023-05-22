@@ -13,6 +13,7 @@ public class GestionScene : MonoBehaviour
     {
         int noScene = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(noScene + 1);
+        
     }
 
     public void Quitter()
