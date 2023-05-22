@@ -26,8 +26,6 @@ public class Player : MonoBehaviour
     private GestionScene _gestionScene;
    
     [SerializeField] private AudioClip _cAcSound = default;
-    [SerializeField] private HpBar _hpBar;
-
 
     private void Awake()
     {
