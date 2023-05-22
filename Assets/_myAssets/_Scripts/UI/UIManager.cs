@@ -9,9 +9,11 @@ public class UIManager : MonoBehaviour
 
 
     [SerializeField] private TextMeshProUGUI _txtScore = default;
+    [SerializeField] private TextMeshProUGUI _txtTimer = default;
     [SerializeField] private GameObject _pausePanel = default;
 
     private int _score =0;
+    private float _tempsEcoule = 0f;
 
     private bool _pauseOn = false;
 
@@ -19,10 +21,9 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _score = 0;
+        _score = getScore();
         _pauseOn = false;
         Time.timeScale = 1;
-
         UpdateScore();
     }
 
@@ -30,12 +31,14 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         MettreEnPause();
+        UpdateTime();
+
     }
 
     //gestion de pause ============
     private void MettreEnPause()
     {
-        // Permet la gestion du panneau de pause (marche/arrêt)
+        // Permet la gestion du panneau de pause (marche/arrï¿½t)
         if ((Input.GetKeyDown(KeyCode.Escape) && !_pauseOn))
         {
             _pausePanel.SetActive(true);
@@ -49,7 +52,7 @@ public class UIManager : MonoBehaviour
             _pauseOn = false;
         }
     }
-    // Méthode qui relance la partie après une pause
+    // Mï¿½thode qui relance la partie aprï¿½s une pause
     public void ResumeGame()
     {
         _pausePanel.SetActive(false);
@@ -61,6 +64,8 @@ public class UIManager : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
+
+
     //Gestion de score =====================
     public void AjouterScore(int points)
     {
@@ -76,6 +81,25 @@ public class UIManager : MonoBehaviour
     public int getScore()
     {
         return _score;
+    }
+
+    //Gestion de score =====================
+
+    private void UpdateTime()
+    {
+
+        _tempsEcoule += Time.deltaTime;
+
+        // Calcul du nombre de minutes et de secondes
+        int minutes = Mathf.FloorToInt(_tempsEcoule / 60f);
+        int seconds = Mathf.FloorToInt(_tempsEcoule % 60f);
+        int milliseconds = Mathf.FloorToInt((_tempsEcoule * 1000) % 1000f);
+
+        // Formatage de la chaÃ®ne de temps
+        string timeString = string.Format("{0:00}:{1:00}:{2:000}", minutes, seconds, milliseconds);
+
+        _txtTimer.text = timeString;
+
     }
 
 
