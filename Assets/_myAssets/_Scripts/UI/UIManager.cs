@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
@@ -11,6 +12,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _txtScore = default;
     [SerializeField] private TextMeshProUGUI _txtTimer = default;
     [SerializeField] private GameObject _pausePanel = default;
+    [SerializeField] public AudioSource audioSource;
+
+    [SerializeField] public Image muteButtonImage;
+    [SerializeField] public Sprite muteSprite;
+    [SerializeField] public Sprite unmuteSprite;
+    private bool isMuted;
 
     private int _score =0;
     private float _tempsEcoule = 0f;
@@ -25,6 +32,10 @@ public class UIManager : MonoBehaviour
         _pauseOn = false;
         Time.timeScale = 1;
         UpdateScore();
+
+        isMuted = audioSource.mute;
+
+
     }
 
     // Update is called once per frame
@@ -106,6 +117,20 @@ public class UIManager : MonoBehaviour
 
         _txtTimer.text = timeString;
 
+    }
+
+
+    public void ToggleMute()
+    {
+        isMuted = !isMuted;
+        audioSource.mute = isMuted;
+        UpdateButtonState();
+    }
+
+    private void UpdateButtonState()
+    {
+        // Modifier l'image du bouton en fonction de l'état de sourdine
+        muteButtonImage.sprite = isMuted ? muteSprite : unmuteSprite;
     }
 
 }

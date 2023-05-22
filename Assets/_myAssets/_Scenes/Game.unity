@@ -27493,6 +27493,10 @@ MonoBehaviour:
   _txtScore: {fileID: 398738286}
   _txtTimer: {fileID: 2046849159}
   _pausePanel: {fileID: 2076380175}
+  audioSource: {fileID: 226790599}
+  muteButtonImage: {fileID: 2116819064}
+  muteSprite: {fileID: 21300000, guid: 3fd0c13759b961148909a11552c0b89f, type: 3}
+  unmuteSprite: {fileID: 21300000, guid: d3c8582f510fc724f8573985bb9c337e, type: 3}
 --- !u!1001 &801246303
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -68607,7 +68611,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2116819064}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 799927851}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: ToggleMute
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2116819064
 MonoBehaviour:
   m_ObjectHideFlags: 0
