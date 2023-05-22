@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
     private Transform playerTransform;
     private Animator _anim;
     private UIManager _uiManager;
+    private GameManager _gameManager;
 
     private Rigidbody2D rbEnemy;
     private Vector2 movementEnemy;
@@ -27,6 +28,8 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         _uiManager = FindObjectOfType<UIManager>();
+        _gameManager = FindObjectOfType<GameManager>();
+
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
 
 
@@ -76,22 +79,22 @@ public class Enemy : MonoBehaviour
             // Si la collision survient avec le joueur
             if (other.tag == "Player")
             {
-                //R�cup�rer la classe Player afin d'acc�der aux m�thodes publiques
+               
                 Player player = other.transform.GetComponent<Player>();
                 if (this.tag == "Knight")
                 {
-                    player.TakeDamage(25);  // Appeler la m�thode d�gats du joueur
-
+                    player.TakeDamage(25);  // Appeler la m�thode d�gats du knight vers le joueur
                 }
-
                 else
                 {
-                    player.TakeDamage(20);  // Appeler la m�thode d�gats du joueur
+                    player.TakeDamage(20);  // Appeler la m�thode d�gats du priest et thief vers le joueur
                  }
 
-            Destroy(this.gameObject); // D�truire l'objet ennemi
-            _countEnnemis++;
-            _uiManager.AjouterScore(_countEnnemis);
+            Destroy(this.gameObject);
+
+            _gameManager.AugmenterPointage();
+            /*_countEnnemis++;
+            _uiManager.AjouterScore(_countEnnemis);*/
 
             Debug.Log("l'ennemi a touch� le joueur");
 
@@ -100,12 +103,12 @@ public class Enemy : MonoBehaviour
         else if (other.tag == "attaqueCAC") 
             {
             // detruire l'ennemi
-            Destroy(this.gameObject); 
-            _countEnnemis++; //score
+            Destroy(this.gameObject);
+            _gameManager.AugmenterPointage();
 
-            // Appelle la m�thode dans la classe UIManger pour augmenter le pointage
+           /* // Appelle la m�thode dans la classe UIManger pour augmenter le pointage
             _uiManager.AjouterScore(_countEnnemis);
-             Debug.Log("attaqueCAC a touch� l'ennemi");
+             Debug.Log("attaqueCAC a touch� l'ennemi");*/
 
             }
 

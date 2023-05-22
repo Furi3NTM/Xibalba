@@ -52,8 +52,8 @@ public class SpawnManager : MonoBehaviour
         if (playerTransform == null)
             return;
 
-        Vector3 enemySpawn = new Vector3(Random.Range((player.transform.position.x + 2) - 8f, player.transform.position.x + 8f),
-                                         Random.Range(player.transform.position.y - 8f, player.transform.position.y + 8f),
+        Vector3 enemySpawn = new Vector3(Random.Range((player.transform.position.x + 10f) - 20f, player.transform.position.x + 20f),
+                                         Random.Range((player.transform.position.y + 10f) - 20f, player.transform.position.y + 20f),
                                          player.transform.position.z + Random.Range(-2f, 2f));
 
         GameObject newEnemy = Instantiate(enemyPrefab, enemySpawn, Quaternion.identity);
