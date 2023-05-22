@@ -3,12 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Stairs
-  - Enemy
-  - Knight
-  - Thief
-  - attaqueCAC
+  tags: []
   layers:
   - Default
   - TransparentFX

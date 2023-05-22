@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] public int maxHealth = 100; // Ajout de la variable de vie
                      public int damageAmount = 50;
 
+    [SerializeField] public ParticleSystem particleSystemPrefab;
 
     public int _countEnnemis;
 
@@ -85,10 +86,15 @@ public class Enemy : MonoBehaviour
                 {
                     player.TakeDamage(25);  // Appeler la m�thode d�gats du knight vers le joueur
                 }
+                else if (this.tag == "Thief")
+                {
+                    player.TakeDamage(15);  // Appeler la m�thode d�gats du knight vers le joueur
+                Debug.Log("thief");
+                }
                 else
                 {
                     player.TakeDamage(20);  // Appeler la m�thode d�gats du priest et thief vers le joueur
-                 }
+                }
 
             Destroy(this.gameObject);
 
@@ -105,13 +111,12 @@ public class Enemy : MonoBehaviour
             // detruire l'ennemi
             Destroy(this.gameObject);
             _gameManager.AugmenterPointage();
+            // Activer le système de particules
+            Instantiate(particleSystemPrefab, playerTransform.position, Quaternion.identity);
 
-           /* // Appelle la m�thode dans la classe UIManger pour augmenter le pointage
-            _uiManager.AjouterScore(_countEnnemis);
-             Debug.Log("attaqueCAC a touch� l'ennemi");*/
-
-            }
 
         }
+
+    }
 
 }
