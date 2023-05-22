@@ -97,15 +97,13 @@ public class Enemy : MonoBehaviour
                 if (this.tag == "Knight")
                 {
                     player.TakeDamage(25);  // Appeler la m�thode d�gats du joueur
-                    Debug.Log("le chevalier a fait 25 degats");
 
                 }
 
                 else
                 {
-
                     player.TakeDamage(20);  // Appeler la m�thode d�gats du joueur
-                }
+                 }
 
             Destroy(this.gameObject); // D�truire l'objet ennemi
             _countEnnemis++;
