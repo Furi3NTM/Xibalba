@@ -52,6 +52,7 @@ public class UIManager : MonoBehaviour
             _pauseOn = false;
         }
     }
+
     // M�thode qui relance la partie apr�s une pause
     public void ResumeGame()
     {
@@ -83,7 +84,12 @@ public class UIManager : MonoBehaviour
         return _score;
     }
 
-    //Gestion de score =====================
+    public void ChangerPointage(int p_pointage)
+    {
+        _txtScore.text = p_pointage.ToString();
+    }
+
+    //Gestion temps =====================
 
     private void UpdateTime()
     {
@@ -102,11 +108,4 @@ public class UIManager : MonoBehaviour
 
     }
 
-
-
-    IEnumerator EndGame()
-    {
-        yield return new WaitForSeconds(2f);
-        SceneManager.LoadScene(2);
-    }
 }

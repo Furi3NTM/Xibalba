@@ -5,21 +5,21 @@ using UnityEngine;
 
 public class FinPartie : MonoBehaviour
 {
+    [SerializeField] private TMP_Text _txtScore = default;
+    [SerializeField] private TMP_Text _txtTemps = default;
 
-    [SerializeField] private TextMeshProUGUI _txtScore = default;
-    private int _score;
+    private GameManager _gameManager;
 
 
-    // Start is called before the first frame update
     void Start()
     {
+        _gameManager = FindObjectOfType<GameManager>();
+   
 
-        _txtScore.text = _score.ToString();
-    }
+        _txtScore.text = _gameManager.GetPointage().ToString();
+        _txtTemps.text = _gameManager.GetTemps();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Debug.Log(_gameManager.GetPointage().ToString());
+        Debug.Log(_gameManager.GetTemps().ToString());
     }
 }

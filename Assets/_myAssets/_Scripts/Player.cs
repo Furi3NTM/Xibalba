@@ -10,30 +10,25 @@ public class Player : MonoBehaviour
 
     [SerializeField] private float _speed = 15f;
     [SerializeField] private float _delaiMelee = 2f;
-    private float _canFire = -1;
-
+  
     [SerializeField] private int _viesJoueur = 3;
     [SerializeField] private int _maxVie = 100;
+    [SerializeField] private HpBar _hpBar;
     private int _vie;
 
     [SerializeField] private GameObject _attaqueCaC = default;
-    [SerializeField] private HpBar _hpBar;
+    [SerializeField] private AudioClip _cAcSound = default;
 
     private Animator _anim;
     private SpawnManager _spawnManager;
     private UIManager _uiManager;
-
     private GestionScene _gestionScene;
    
-    [SerializeField] private AudioClip _cAcSound = default;
 
     private void Awake()
     {
-
         _spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
         _anim = GetComponent<Animator>();
-
-
     }
     // Start is called before the first frame update
     void Start()
@@ -74,14 +69,11 @@ public class Player : MonoBehaviour
     private void Melee()
     {
         _attaqueCaC.SetActive(true);
-
-        Debug.Log("Melee animation triggered!");
     }
 
     private void stopMelee()
     {
         _attaqueCaC.SetActive(false);
-        Debug.Log("Melee animation stopped!");
     }
     private void Move()
     {
@@ -89,10 +81,6 @@ public class Player : MonoBehaviour
         float verticalInput = Input.GetAxis("Vertical");
         Vector3 direction = new Vector3(horizontalInput, verticalInput, 0f);
         transform.Translate(direction * Time.deltaTime * _speed);
-
-
-
-
 
 
         if (horizontalInput < 0) //tourner a gauche
@@ -113,7 +101,6 @@ public class Player : MonoBehaviour
     // M�thodes publiques ==================================================================
 
  
-
     //baisse la vie du player
     public void TakeDamage(int damage)
     {
@@ -124,8 +111,6 @@ public class Player : MonoBehaviour
             Destroy(this.gameObject);
             int noScene = SceneManager.GetActiveScene().buildIndex;
             SceneManager.LoadScene(noScene + 1);
-
-
         }
 
     }
