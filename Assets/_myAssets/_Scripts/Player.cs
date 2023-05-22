@@ -22,12 +22,13 @@ public class Player : MonoBehaviour
     private Animator _anim;
     private SpawnManager _spawnManager;
     private UIManager _uiManager;
+
     private GestionScene _gestionScene;
    
+    [SerializeField] private AudioClip _cAcSound = default;
+    [SerializeField] private HpBar _hpBar;
 
 
-    
-    
     private void Awake()
     {
 
@@ -43,19 +44,27 @@ public class Player : MonoBehaviour
 
         _vie = _maxVie;
         _hpBar.SetMaxHealth(_maxVie);
-    
+        if (_anim.GetBool("Attaque_cac") == true)
+        {
+            AudioSource.PlayClipAtPoint(_cAcSound, Camera.main.transform.position, 0.1f);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
         Move();
+        AttackCAC();
+    }
+
+    private void AttackCAC()
+    {
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Mouse0))
         {
             _anim.SetBool("Attaque_cac", true);
 
-     
+
         }
         else if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.Mouse0))
         {
